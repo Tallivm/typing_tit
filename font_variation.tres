@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cdfdyc3shvn7s"]
+
+[ext_resource type="FontFile" uid="uid://pk8vvdoj5dx2" path="res://assets/OverpassMono-Regular.ttf" id="1_cp41o"]
+
+[resource]
+base_font = ExtResource("1_cp41o")
+opentype_features = {
+1818847073: 0
+}

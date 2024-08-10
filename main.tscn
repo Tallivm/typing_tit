@@ -1,0 +1,382 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvqo1cupd4o67"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_gmpd0"]
+[ext_resource type="Theme" uid="uid://bdpjtyucep30i" path="res://theme.tres" id="3_3tslc"]
+[ext_resource type="Script" path="res://PhraseContainer.gd" id="3_8vq5v"]
+[ext_resource type="FontFile" uid="uid://cewh7uqmy2xos" path="res://assets/OverpassMono-VariableFont_wght.ttf" id="4_brhnx"]
+[ext_resource type="Script" path="res://SpotifyClient.gd" id="5_5j3ff"]
+[ext_resource type="Script" path="res://RequestClient.gd" id="5_fx6kn"]
+[ext_resource type="Script" path="res://GeniusClient.gd" id="7_j0f08"]
+
+[sub_resource type="GDScript" id="GDScript_wc572"]
+script/source = "extends Button
+"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_gmpd0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RequestsSceen" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 1280.0
+offset_bottom = 770.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/RequestsSceen"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="spotifyRow" type="HBoxContainer" parent="CanvasLayer/RequestsSceen/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="spotifyRowLabel" type="Label" parent="CanvasLayer/RequestsSceen/VBoxContainer/spotifyRow"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = "Spotify Redirect link:"
+
+[node name="spotifyRowText" type="LineEdit" parent="CanvasLayer/RequestsSceen/VBoxContainer/spotifyRow"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/RequestsSceen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="geniusRow" type="HBoxContainer" parent="CanvasLayer/RequestsSceen/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="geniusRowLabel" type="Label" parent="CanvasLayer/RequestsSceen/VBoxContainer/geniusRow"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = " Genius Redirect link:"
+
+[node name="geniusRowText" type="LineEdit" parent="CanvasLayer/RequestsSceen/VBoxContainer/geniusRow"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/RequestsSceen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="loadAllButton" type="Button" parent="CanvasLayer/RequestsSceen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_3tslc")
+text = "Load songs"
+
+[node name="GameScreen" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme = ExtResource("3_3tslc")
+
+[node name="PhraseContainer" type="Node2D" parent="CanvasLayer/GameScreen"]
+position = Vector2(-610, -594)
+script = ExtResource("3_8vq5v")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/GameScreen/PhraseContainer"]
+offset_left = 749.0
+offset_top = 671.0
+offset_right = 1754.0
+offset_bottom = 1238.0
+auto_translate = false
+localize_numeral_system = false
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/normal_font_size = 90
+bbcode_enabled = true
+text = "[center]-[/center]"
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameScreen"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="enterLabel" type="Label" parent="CanvasLayer/GameScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.231373, 1)
+theme_override_font_sizes/font_size = 16
+text = "press Enter to continue"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GameScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="FinishedLyricsScreen" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -1.0
+theme = ExtResource("3_3tslc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FinishedLyricsScreen"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="fullLyrics" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="nameValue" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_3tslc")
+theme_override_colors/font_color = Color(0.823529, 0.486275, 0.121569, 1)
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="artistValue" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("3_3tslc")
+theme_override_colors/font_color = Color(0.823529, 0.486275, 0.121569, 1)
+theme_override_font_sizes/font_size = 20
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="accuracy" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 18
+text = "Accuracy: "
+
+[node name="accuracyLabel" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 18
+text = "%"
+
+[node name="speed" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 18
+text = "       Speed: "
+
+[node name="speedLabel" type="Label" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 18
+text = "%"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="Link" type="HBoxContainer" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer/Link"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = "YouTube link"
+
+[node name="Next" type="HBoxContainer" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NextSongButton" type="Button" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer/Next"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = "next"
+script = SubResource("GDScript_wc572")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/FinishedLyricsScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="IntroScreen" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 1279.0
+offset_bottom = 773.0
+theme = ExtResource("3_3tslc")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/IntroScreen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/IntroScreen/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleRow" type="HBoxContainer" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/TitleRow"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.8, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.231373, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("4_brhnx")
+theme_override_font_sizes/font_size = 110
+text = "The Typing Tit"
+vertical_alignment = 1
+
+[node name="LevelSelectionRow" type="HBoxContainer" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LevelSelection" type="Label" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/LevelSelectionRow"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = "Load from index:  "
+vertical_alignment = 1
+
+[node name="LevelOptionButton" type="OptionButton" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/LevelSelectionRow"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+fit_to_longest_item = false
+
+[node name="Spacer" type="HBoxContainer" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="StartButtonRow" type="HBoxContainer" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/StartButtonRow"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = "Type!"
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoadButton" type="Button" parent="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+disabled = true
+text = "Load songs from Spotify"
+
+[node name="ingameStats" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 11.0
+offset_top = -1.0
+offset_right = 397.0
+offset_bottom = 37.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ingameStats"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ingameStats"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ingameStats/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/ingameStats/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+text = "Menu"
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/ingameStats/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+
+[node name="SongIndex" type="Label" parent="CanvasLayer/ingameStats/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 16
+text = "Index: "
+
+[node name="SongIndexValue" type="Label" parent="CanvasLayer/ingameStats/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+
+[node name="CharCount" type="Label" parent="CanvasLayer/ingameStats/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 16
+text = "      Chars left: "
+
+[node name="CharCountValue" type="Label" parent="CanvasLayer/ingameStats/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_3tslc")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="RequestClient" type="Node" parent="."]
+script = ExtResource("5_fx6kn")
+
+[node name="SpotifyClient" type="Node" parent="RequestClient"]
+script = ExtResource("5_5j3ff")
+
+[node name="HTTPRequestAuth" type="HTTPRequest" parent="RequestClient/SpotifyClient"]
+
+[node name="GeniusClient" type="Node" parent="RequestClient"]
+script = ExtResource("7_j0f08")
+
+[node name="HTTPRequestAuth" type="HTTPRequest" parent="RequestClient/GeniusClient"]
+
+[node name="HTTPRequestSongs" type="HTTPRequest" parent="RequestClient"]
+
+[node name="HTTPRequestLyrics" type="HTTPRequest" parent="RequestClient"]
+
+[node name="HTTPRequestLyricsGet" type="HTTPRequest" parent="RequestClient"]
+
+[connection signal="pressed" from="CanvasLayer/RequestsSceen/VBoxContainer/loadAllButton" to="." method="_on_load_all_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/FinishedLyricsScreen/VBoxContainer/Next/NextSongButton" to="." method="_on_next_song_button_pressed"]
+[connection signal="item_selected" from="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/LevelSelectionRow/LevelOptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/StartButtonRow/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/IntroScreen/CenterContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ingameStats/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="spotify_token_obtained" from="RequestClient/SpotifyClient" to="." method="_on_spotify_client_spotify_token_obtained"]
+[connection signal="genius_token_obtained" from="RequestClient/GeniusClient" to="." method="_on_genius_client_genius_token_obtained"]
